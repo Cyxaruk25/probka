@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Учет заявок на ремонт бытовой техники</title>
+</head>
+<body>
+    <h1>Учет заявок на ремонт бытовой техники</h1>
+    <h2>Добро пожаловать, {{ session.username }}</h2>
+    <a href="{{ url_for('logout') }}">Выйти</a>
+    <h2>Добавить заявку</h2>
+    <form method="POST" action="{{ url_for('add_request') }}">
+        <label>Вид бытовой техники:</label><br>
+        <input type="text" name="appliance_type"><br>
+        <label>Модель бытовой техники:</label><br>
+        <input type="text" name="appliance_model"><br>
+        <label>Описание проблемы:</label><br>
+        <textarea name="issue_description"></textarea><br>
+        <label>ФИО клиента:</label><br>
+        <input type="text" name="client_name"><br>
+        <label>Номер телефона:</label><br>
+        <input type="text" name="phone_number"><br>
+        <input type="submit" value="Добавить">
+    </form>
+    <h2>Поиск заявок</h2>
+    <form method="GET" action="{{ url_for('search_request') }}">
+        <label>Номер заявки:</label><br>
+        <input type="text" name="request_id"><br>
+        <input type="submit" value="Найти">
+    </form>
+    <h2>Список заявок</h2>
+    <table border="1">
+        <tr>
+            <th>Номер заявки</th>
+            <th>Дата добавления</th>
+            <th>Вид бытовой техники</th>
+            <th>Модель бытовой техники</th>
+            <th>Описание проблемы</th>
+            <th>ФИО клиента</th>
+            <th>Номер телефона</th>
+            <th>Статус заявки</th>
+            <th>Действия</th>
+        </tr>
+        {% for request in requests %}
+        <tr>
+            <td>{{ request[0] }}</td>
+            <td>{{ request[1] }}</td>
+            <td>{{ request[2] }}</td>
+            <td>{{ request[3] }}</td>
+            <td>{{ request[4] }}</td>
+            <td>{{ request[5] }}</td>
+            <td>{{ request[6] }}</td>
+            <td>{{ request[7] }}</td>
+            <td>
+                 <a href="{{ url_for('edit_request', request_id=request[0]) }}">Редактировать</a>
+            </td>
+        </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить заявку</title>
+</head>
+<body>
+    <h1>Добавить заявку</h1>
+    <form method="POST" action="{{ url_for('add_request') }}">
+        <label>Вид бытовой техники:</label><br>
+        <input type="text" name="appliance_type"><br>
+        <label>Модель бытовой техники:</label><br>
+        <input type="text" name="appliance_model"><br>
+        <label>Описание проблемы:</label><br>
+        <textarea name="issue_description"></textarea><br>
+        <label>ФИО клиента:</label><br>
+        <input type="text" name="client_name"><br>
+        <label>Номер телефона:</label><br>
+        <input type="text" name="phone_number"><br>
+        <input type="submit" value="Добавить">
+    </form>
+    <a href="{{ url_for('index') }}">Назад к списку заявок</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактировать заявку</title>
+</head>
+<body>
+    <h1>Редактировать заявку</h1>
+    <form method="POST" action="{{ url_for('edit_request', request_id=request_data[0]) }}">
+        <label>Статус заявки:</label><br>
+        <input type="text" name="status" value="{{ request_data[7] }}"><br>
+        <label>Описание проблемы:</label><br>
+        <textarea name="issue_description">{{ request_data[4] }}</textarea><br>
+        <input type="submit" value="Сохранить">
+    </form>
+    <a href="{{ url_for('index') }}">Назад к списку заявок</a>
+</body>
+</html>
